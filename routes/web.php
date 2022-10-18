@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BahanController;
+use App\Http\Controllers\PesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,7 @@ Route::post('register/action', [RegisterController::class, 'actionregister'])->n
 #CRUD Bahan baku
 Route::get('bahan/tampil', [BahanController::class, 'tampilbahan'])->name('tampilbahan')->middleware('auth');
 Route::get('bahan/tambah', [BahanController::class, 'tambahbahan'])->name('tambahbahan')->middleware('auth');
+
+#CRUD Pemesanan
+Route::get('pesanan/tampil', [PesananController::class, 'tampilpesanan'])->name('tampilpesanan')->middleware('auth');
+Route::get('pesanan/tambah', [PesananController::class, 'tambahpesanan'])->name('tambahpesanan')->middleware('auth');
