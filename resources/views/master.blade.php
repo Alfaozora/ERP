@@ -108,6 +108,7 @@
         <ul class="nav menu">
             <li class="active"><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
             <li><a href="{{route('tampilbahan')}}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog Bahan Baku</a></li>
+            <li><a href="{{route('tampilpesanan')}}"><em class="fa fa-shopping-cart">&nbsp;</em> Pemesanan</a></li>
             <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
                     <em class="fa fa-navicon">&nbsp;</em> Produksi <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
