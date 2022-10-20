@@ -5,20 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ERP</title>
-    <link href="{{asset('style/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('style/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('style/css/datepicker3.css')}}" rel="stylesheet">
-    <link href="{{asset('style/css/styles.css')}}" rel="stylesheet">
+    <link href="{{ asset('style/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('style/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('style/css/datepicker3.css') }}" rel="stylesheet">
+    <link href="{{ asset('style/css/styles.css') }}" rel="stylesheet">
 
     <!--Custom Font-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+ <script src="js/html5shiv.js"></script>
+ <script src="js/respond.min.js"></script>
+ <![endif]-->
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -26,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span></button>
-                <a class="navbar-brand" href="{{route('home')}}"><span>ERP</span> PRODUKSI KAOS POLOS</a>
+                <a class="navbar-brand" href="{{ route('home') }}"><span>ERP</span> PRODUKSI KAOS POLOS</a>
                 <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                             <em class="fa fa-envelope"></em><span class="label label-danger">15</span>
@@ -37,7 +38,8 @@
                                         <img alt="image" class="img-circle" src="http://placehold.it/40/30a5ff/fff">
                                     </a>
                                     <div class="message-body"><small class="pull-right">3 mins ago</small>
-                                        <a href="#"><strong>John Doe</strong> commented on <strong>your photo</strong>.</a>
+                                        <a href="#"><strong>John Doe</strong> commented on <strong>your
+                                                photo</strong>.</a>
                                         <br /><small class="text-muted">1:24 pm - 25/03/2015</small>
                                     </div>
                                 </div>
@@ -91,25 +93,22 @@
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         <div class="profile-sidebar">
             <div class="profile-userpic">
-                <img src="{{asset('style/gambar/user.png')}}" class="img-responsive" alt="">
+                <img src="{{ asset('style/gambar/user.png') }}" class="img-responsive" alt="">
             </div>
             <div class="profile-usertitle">
                 <div class="profile-usertitle-name">
-                    {{Auth::user()->name}}
+                    {{ Auth::user()->name }}
                 </div>
                 <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
             </div>
             <div class="clear"></div>
         </div>
         <div class="divider"></div>
-        <form role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-        </form>
         <ul class="nav menu">
-            <li class="parent"><a href="{{route('home')}}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-            <li class="active"><a href="{{route('tampilbahan')}}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog Bahan Baku</a></li>
+            <li class="parent"><a href="{{ route('home') }}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+            <li class="active"><a href="{{ route('bahan.index') }}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog
+                    Bahan Baku</a></li>
+            <li><a href="{{ route('pesanan.index') }}"><em class="fa fa-shopping-cart">&nbsp;</em> Pemesanan</a></li>
             <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
                     <em class="fa fa-navicon">&nbsp;</em> Produksi <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
@@ -122,7 +121,7 @@
                         </a></li>
                 </ul>
             </li>
-            <li><a href="{{route('actionlogout')}}"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+            <li><a href="{{ route('actionlogout') }}"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
         </ul>
     </div>
     <!--/.sidebar-->
@@ -130,7 +129,7 @@
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
             <ol class="breadcrumb">
-                <li><a href="{{route('home')}}">
+                <li><a href="{{ route('home') }}">
                         <em class="fa fa-home"></em>
                     </a></li>
                 <li class="active">Katalog Bahan Baku</li>
@@ -148,43 +147,85 @@
 
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
-            <div class="col-md-12">
-                <a class="btn btn-primary" href="{{route('tambahbahan')}}"><i class="fa fa-plus"></i> Tambah Bahan Baku</a><br><br>
-                <div class="panel panel-primary">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Pencarian. . ." name="#" value="">
+                            </div>
+                            <div class="form-group">
+                                <a type="button" class="btn btn-danger" href="{{route('bahan.create')}}"><i class="fa fa-plus"></i> Tambah</a>
+                            </div>
+                            <div class="form-group">
+                                <a type="button" class="btn btn-info" href="#"><i class="fa fa-print"></i> Cetak</a>
+                            </div>
+                        </form>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-hover">
-                            <tr>
-                                <th>Kode Bahan</th>
-                                <th>Bahan</th>
-                                <th>Ketersediaan</th>
-                            </tr>
-                        </table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode Bahan</th>
+                                    <th>Bahan</th>
+                                    <th>Ketersediaan</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($bahans as $bahan)
+                                <tr>
+                                    <td>{{ $bahan->id }} </td>
+                                    <td>{{ $bahan->kode }} </td>
+                                    <td>{{ $bahan->bahan }} </td>
+                                    <td>{{ $bahan->stok }} </td>
+                                    <td>
+                                        <div class="action">
+                                            <a type="button" class=" action btn btn-warning" href="{{ route('bahan.edit', $bahan->id) }}"><i class="fa fa-edit"></i></a>
+                                            <form action="{{ route('bahan.destroy', $bahan->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class=" action btn btn-danger" onclick="return confirm('Yakin ingin menghapus data?')">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="4">
+                                        Data Kosong
+                                    </td>
+                                </tr>
+                                @endforelse
+                            </tbody>
                         </table>
                     </div>
                 </div>
+                {!! $bahans->withQueryString()->links() !!}
             </div>
             <div class="col-sm-12">
                 <p class="back-link">ERP Produksi Kaos Polos 2022</a></p>
             </div>
         </div>
     </div>
-    < <script src="{{asset('style/js/jquery-1.11.1.min.js')}}">
-        </script>
-        <script src="{{asset('style/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('style/js/chart.min.js')}}"></script>
-        <script src="{{asset('style/js/chart-data.js')}}"></script>
-        <script src="{{asset('style/js/easypiechart.js')}}"></script>
-        <script src="{{asset('style/js/easypiechart-data.js')}}"></script>
-        <script src="{{asset('style/js/bootstrap-datepicker.js')}}"></script>
-        <script src="{{asset('style/js/custom.js')}}"></script>
-        <script>
-            function inputAngka(evt) {
-                var charCode = (evt.which) ? evt.which : event.keyCode
-                if (charCode > 31 && (charCode < 48 || charCode > 57))
-                    return false;
-                return true;
-            }
-        </script>
+    <script src="{{ asset('style/js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('style/js/chart.min.js') }}"></script>
+    <script src="{{ asset('style/js/chart-data.js') }}"></script>
+    <script src="{{ asset('style/js/easypiechart.js') }}"></script>
+    <script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
+    <script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('style/js/custom.js') }}"></script>
+    <script>
+        function inputAngka(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
 
 </body>
 

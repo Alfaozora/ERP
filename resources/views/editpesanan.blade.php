@@ -11,7 +11,8 @@
     <link href="{{ asset('style/css/styles.css') }}" rel="stylesheet">
 
     <!--Custom Font-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
     <!--[if lt IE 9]>
  <script src="js/html5shiv.js"></script>
  <script src="js/respond.min.js"></script>
@@ -23,7 +24,8 @@
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span></button>
@@ -104,13 +106,20 @@
             <div class="clear"></div>
         </div>
         <div class="divider"></div>
+        <form role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+        </form>
         <ul class="nav menu">
             <li class="parent"><a href="{{ route('home') }}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-            <li class="active"><a href="{{ route('bahan.index') }}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog
+            <li class="parent"><a href="{{ route('bahan.index') }}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog
                     Bahan Baku</a></li>
-            <li><a href="{{ route('pesanan.index') }}"><em class="fa fa-shopping-cart">&nbsp;</em> Pemesanan</a></li>
+            <li class="active"><a href="{{ route('pesanan.index') }}"><em class="fa fa-shopping-cart">&nbsp;</em>
+                    Pemesanan</a></li>
             <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
-                    <em class="fa fa-navicon">&nbsp;</em> Produksi <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                    <em class="fa fa-navicon">&nbsp;</em> Produksi <span data-toggle="collapse" href="#sub-item-1"
+                        class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
                     <li><a class="" href="#">
@@ -135,15 +144,15 @@
                 <li><a href="{{ route('home') }}">
                         <em class="fa fa-home"></em>
                     </a></li>
-                <li class="breadcrumb-item"><a href="{{ route('bahan.index') }}"> Katalog Bahan Baku</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> Tambah Bahan Baku</li>
+                <li class="breadcrumb-item"><a href="{{ route('pesanan.index') }}"> Detail Pesanan</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Tambah Pesanan</li>
             </ol>
         </div>
         <!--/.row-->
 
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Data Bahan Baku Kaos</h2>
+                <h2 class="page-header">Detail Pesanan</h2>
             </div>
         </div>
     </div>
@@ -152,25 +161,54 @@
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
             <div class="col-sm-6">
-                <form method="post" action="{{ route('bahan.store') }} ">
+                <form method="post" action="{{ route('pesanan.update', $pesanans->id) }}">
                     @csrf
-                    <div class="input-group-sm">
-                        <label>Kode Bahan</label>
-                        <input type="text" name="kode" class="form-control" placeholder="" required="">
+                    @method('PUT')
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input type="text" name="id" class="form-control" placeholder="" required=""
+                            value="{{ old('id', $pesanans->id) }}" disabled>
                     </div>
-                    <div class="input-group-sm">
-                        <label>Bahan</label>
-                        <input type="text" name="bahan" class="form-control" placeholder="" required="">
+                    <div class="form-group">
+                        <label>Produk</label>
+                        <select name="produk" class="form-control">
+                            <option value="{{ old('produk', $pesanans->produk) }}" selected>
+                                {{ old('produk', $pesanans->produk) }}</option>
+                            <option>------------------------------------------------------</option>
+                            <option value="Kaos Lengan Pendek" required="">Kaos Lengan Pendek</option>
+                            <option value="Kaos Lengan Panjang" required="">Kaos Lengan Panjang</option>
+                        </select>
                     </div>
-                    <div class="input-group-sm">
-                        <label>Ketersediaan</label>
-                        <input type="text" name="stok" class="form-control" placeholder="" required="">
+                    <div class="form-group">
+                        <label>Ukuran</label>
+                        <select name="ukuran" class="form-control">
+                            <option value="{{ old('ukuran', $pesanans->ukuran) }}" selected>
+                                {{ old('ukuran', $pesanans->ukuran) }}</option>
+                            <option>------------------------------------------------------</option>
+                            <option value="M" required="">M</option>
+                            <option value="L" required="">L</option>
+                            <option value="XL" required="">XL</option>
+                            <option value="XXL" required="">XXL</option>
+                        </select>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            </br>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan Data</button>
-                        </div>
+                    <div class="form-group">
+                        <label>Jumlah Kaos (pcs)</label>
+                        <input type="text" name="jml_kaos" class="form-control" placeholder="" required=""
+                            value="{{ old('jml_kaos', $pesanans->jml_kaos) }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Kain Katun 245 (Kg)</label>
+                        <input type="text" name="kain" class="form-control" placeholder="" required=""
+                            value="{{ old('jml_kaos', $pesanans->kain) }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah Benang (Yard)</label>
+                        <input type="text" name="benang" class="form-control" placeholder="" required=""
+                            value="{{ old('jml_kaos', $pesanans->benang) }}">
+                    </div>
+                    <div class="form-group text-left">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan
+                            Perubahan</button>
                     </div>
                 </form>
             </div>
@@ -179,23 +217,22 @@
             </div>
         </div>
     </div>
-    < <script src="{{ asset('style/js/jquery-1.11.1.min.js') }}">
-        </script>
-        <script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('style/js/chart.min.js') }}"></script>
-        <script src="{{ asset('style/js/chart-data.js') }}"></script>
-        <script src="{{ asset('style/js/easypiechart.js') }}"></script>
-        <script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
-        <script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
-        <script src="{{ asset('style/js/custom.js') }}"></script>
-        <script>
-            function inputAngka(evt) {
-                var charCode = (evt.which) ? evt.which : event.keyCode
-                if (charCode > 31 && (charCode < 48 || charCode > 57))
-                    return false;
-                return true;
-            }
-        </script>
+    < <script src="{{ asset('style/js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('style/js/chart.min.js') }}"></script>
+    <script src="{{ asset('style/js/chart-data.js') }}"></script>
+    <script src="{{ asset('style/js/easypiechart.js') }}"></script>
+    <script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
+    <script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('style/js/custom.js') }}"></script>
+    <script>
+        function inputAngka(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
 
 </body>
 

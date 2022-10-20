@@ -13,7 +13,7 @@
     <div class="container"><br>
         <div class="col-md-4 col-md-offset-4">
             <h2 class="text-center">
-                <b>ERP KAOS POLOS</b>
+                <b>ERP PRODUKSI KAOS POLOS</b>
             </h2>
             @if(session('error'))
             <div class="alert alert-danger">

@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\BahanController;
-
+use App\Http\Controllers\Bahan_BakuController;
+use App\Http\Controllers\PesananController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,5 +30,7 @@ Route::get('register', [RegisterController::class, 'register'])->name('register'
 Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
 
 #CRUD Bahan baku
-Route::get('bahan/tampil', [BahanController::class, 'tampilbahan'])->name('tampilbahan')->middleware('auth');
-Route::get('bahan/tambah', [BahanController::class, 'tambahbahan'])->name('tambahbahan')->middleware('auth');
+Route::resource('bahan', Bahan_BakuController::class);
+
+#CRUD Pesanan
+Route::resource('pesanan', PesananController::class);

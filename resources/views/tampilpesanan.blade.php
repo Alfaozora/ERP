@@ -13,9 +13,9 @@
     <!--Custom Font-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!--[if lt IE 9]>
- <script src="js/html5shiv.js"></script>
- <script src="js/respond.min.js"></script>
- <![endif]-->
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
 </head>
 
 <body>
@@ -106,21 +106,19 @@
         <div class="divider"></div>
         <ul class="nav menu">
             <li class="parent"><a href="{{ route('home') }}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-            <li class="active"><a href="{{ route('bahan.index') }}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog
+            <li class="parent"><a href="{{ route('bahan.index') }}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog
                     Bahan Baku</a></li>
-            <li><a href="{{ route('pesanan.index') }}"><em class="fa fa-shopping-cart">&nbsp;</em> Pemesanan</a></li>
+            <li class="active"><a href="{{ route('pesanan.index') }}"><em class="fa fa-shopping-cart">&nbsp;</em>
+                    Pemesanan</a></li>
             <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
                     <em class="fa fa-navicon">&nbsp;</em> Produksi <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
                     <li><a class="" href="#">
-                            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
+                            <span class="fa fa-arrow-right">&nbsp;</span> Kaos Lengan Panjang
                         </a></li>
                     <li><a class="" href="#">
-                            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
-                        </a></li>
-                    <li><a class="" href="#">
-                            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
+                            <span class="fa fa-arrow-right">&nbsp;</span> Kaos Lengan Pendek
                         </a></li>
                 </ul>
             </li>
@@ -135,15 +133,14 @@
                 <li><a href="{{ route('home') }}">
                         <em class="fa fa-home"></em>
                     </a></li>
-                <li class="breadcrumb-item"><a href="{{ route('bahan.index') }}"> Katalog Bahan Baku</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> Tambah Bahan Baku</li>
+                <li class="active">Data Pemesanan</li>
             </ol>
         </div>
         <!--/.row-->
 
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Data Bahan Baku Kaos</h2>
+                <h2 class="page-header">Detail Pesanan</h2>
             </div>
         </div>
     </div>
@@ -151,31 +148,69 @@
 
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
-            <div class="col-sm-6">
-                <form method="post" action="{{ route('bahan.store') }} ">
-                    @csrf
-                    <div class="input-group-sm">
-                        <label>Kode Bahan</label>
-                        <input type="text" name="kode" class="form-control" placeholder="" required="">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <select class="form-control" type="text" placeholder="Pencarian. . ." name="#" value="">
+                                    <option>Pilih Kode Produk</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <a type="button" class="btn btn-danger" href="{{route('pesanan.create')}}"><i class="fa fa-plus"></i> Tambah</a>
+                            </div>
+                            <div class="form-group">
+                                <a type="button" class="btn btn-info" href="#"><i class="fa fa-print"></i> Cetak</a>
+                            </div>
+                        </form>
                     </div>
-                    <div class="input-group-sm">
-                        <label>Bahan</label>
-                        <input type="text" name="bahan" class="form-control" placeholder="" required="">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="text-center" style="vertical-align:middle;">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode Produk</th>
+                                    <th>Produk</th>
+                                    <th>Jumlah Kaos (Lusin)</th>
+                                    <th>Ukuran</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center" style="vertical-align:middle;">
+                                @forelse ($pesanans as $pesanan)
+                                <tr>
+                                    <td>{{ $pesanan->id }} </td>
+                                    <td>{{$pesanan->kode_produk}}</td>
+                                    <td>{{ $pesanan->produk }} </td>
+                                    <td>{{ $pesanan->jml_kaos }} </td>
+                                    <td>{{ $pesanan->ukuran }} </td>
+                                    <td>
+                                        <div class="action">
+                                            <a href="{{ route('pesanan.edit', $pesanan->id) }}" class="action btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                            <form action="{{ route('pesanan.destroy', $pesanan->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="action btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @empty
+                                ` <tr>
+                                    <td colspan="6" class="text-center">Tidak ada data</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="input-group-sm">
-                        <label>Ketersediaan</label>
-                        <input type="text" name="stok" class="form-control" placeholder="" required="">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            </br>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan Data</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
+                {!! $pesanans->withQueryString()->links() !!}
             </div>
             <div class="col-sm-12">
-                <p class="back-link">ERP Produksi Kaos Polos 2022</p>
+                <p class="back-link">ERP Produksi Kaos Polos 2022</a></p>
             </div>
         </div>
     </div>

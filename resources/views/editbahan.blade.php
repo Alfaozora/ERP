@@ -11,7 +11,8 @@
     <link href="{{ asset('style/css/styles.css') }}" rel="stylesheet">
 
     <!--Custom Font-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
     <!--[if lt IE 9]>
  <script src="js/html5shiv.js"></script>
  <script src="js/respond.min.js"></script>
@@ -23,7 +24,8 @@
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span></button>
@@ -104,13 +106,19 @@
             <div class="clear"></div>
         </div>
         <div class="divider"></div>
+        <form role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+        </form>
         <ul class="nav menu">
             <li class="parent"><a href="{{ route('home') }}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
             <li class="active"><a href="{{ route('bahan.index') }}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog
                     Bahan Baku</a></li>
             <li><a href="{{ route('pesanan.index') }}"><em class="fa fa-shopping-cart">&nbsp;</em> Pemesanan</a></li>
             <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
-                    <em class="fa fa-navicon">&nbsp;</em> Produksi <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                    <em class="fa fa-navicon">&nbsp;</em> Produksi <span data-toggle="collapse" href="#sub-item-1"
+                        class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
                     <li><a class="" href="#">
@@ -152,25 +160,32 @@
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
             <div class="col-sm-6">
-                <form method="post" action="{{ route('bahan.store') }} ">
+                <form method="post" action="{{ route('bahan.update', $bahans->id) }}">
                     @csrf
-                    <div class="input-group-sm">
+                    @method('PUT')
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input type="text" name="id" class="form-control" placeholder="" required=""
+                            value="{{ old('id', $bahans->id) }}" disabled>
+                    </div>
+                    <div class="form-group">
                         <label>Kode Bahan</label>
-                        <input type="text" name="kode" class="form-control" placeholder="" required="">
+                        <input type="text" name="kode" class="form-control" placeholder="" required=""
+                            value="{{ old('kode', $bahans->kode) }}">
                     </div>
-                    <div class="input-group-sm">
+                    <div class="form-group">
                         <label>Bahan</label>
-                        <input type="text" name="bahan" class="form-control" placeholder="" required="">
+                        <input type="text" name="bahan" class="form-control" placeholder="" required=""
+                            value="{{ old('bahan', $bahans->bahan) }}">
                     </div>
-                    <div class="input-group-sm">
+                    <div class="form-group">
                         <label>Ketersediaan</label>
-                        <input type="text" name="stok" class="form-control" placeholder="" required="">
+                        <input type="text" name="stok" class="form-control" placeholder="" required=""
+                            value="{{ old('stok', $bahans->stok) }}">
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            </br>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan Data</button>
-                        </div>
+                    <div class="form-group text-left">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan
+                            Data</button>
                     </div>
                 </form>
             </div>
@@ -179,23 +194,22 @@
             </div>
         </div>
     </div>
-    < <script src="{{ asset('style/js/jquery-1.11.1.min.js') }}">
-        </script>
-        <script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('style/js/chart.min.js') }}"></script>
-        <script src="{{ asset('style/js/chart-data.js') }}"></script>
-        <script src="{{ asset('style/js/easypiechart.js') }}"></script>
-        <script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
-        <script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
-        <script src="{{ asset('style/js/custom.js') }}"></script>
-        <script>
-            function inputAngka(evt) {
-                var charCode = (evt.which) ? evt.which : event.keyCode
-                if (charCode > 31 && (charCode < 48 || charCode > 57))
-                    return false;
-                return true;
-            }
-        </script>
+    < <script src="{{ asset('style/js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('style/js/chart.min.js') }}"></script>
+    <script src="{{ asset('style/js/chart-data.js') }}"></script>
+    <script src="{{ asset('style/js/easypiechart.js') }}"></script>
+    <script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
+    <script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('style/js/custom.js') }}"></script>
+    <script>
+        function inputAngka(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
 
 </body>
 

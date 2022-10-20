@@ -10,6 +10,23 @@
     <link href="{{ asset('style/css/datepicker3.css') }}" rel="stylesheet">
     <link href="{{ asset('style/css/styles.css') }}" rel="stylesheet">
 
+    <!--Kalender-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function() {
+            $("#date").datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                dateFormat: "yy-mm-dd",
+                language: 'id'
+            });
+        });
+    </script>
+
     <!--Custom Font-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!--[if lt IE 9]>
@@ -106,9 +123,10 @@
         <div class="divider"></div>
         <ul class="nav menu">
             <li class="parent"><a href="{{ route('home') }}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-            <li class="active"><a href="{{ route('bahan.index') }}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog
+            <li class="parent"><a href="{{ route('bahan.index') }}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog
                     Bahan Baku</a></li>
-            <li><a href="{{ route('pesanan.index') }}"><em class="fa fa-shopping-cart">&nbsp;</em> Pemesanan</a></li>
+            <li class="active"><a href="{{ route('pesanan.index') }}"><em class="fa fa-shopping-cart">&nbsp;</em>
+                    Pemesanan</a></li>
             <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
                     <em class="fa fa-navicon">&nbsp;</em> Produksi <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
@@ -135,15 +153,15 @@
                 <li><a href="{{ route('home') }}">
                         <em class="fa fa-home"></em>
                     </a></li>
-                <li class="breadcrumb-item"><a href="{{ route('bahan.index') }}"> Katalog Bahan Baku</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> Tambah Bahan Baku</li>
+                <li class="breadcrumb-item"><a href="{{ route('pesanan.index') }}"> Detail Pesanan</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Tambah Pesanan</li>
             </ol>
         </div>
         <!--/.row-->
 
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Data Bahan Baku Kaos</h2>
+                <h2 class="page-header">Detail Pesanan</h2>
             </div>
         </div>
     </div>
@@ -151,35 +169,110 @@
 
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
-            <div class="col-sm-6">
-                <form method="post" action="{{ route('bahan.store') }} ">
-                    @csrf
-                    <div class="input-group-sm">
-                        <label>Kode Bahan</label>
-                        <input type="text" name="kode" class="form-control" placeholder="" required="">
+            <form class="needs-validation" method="post" action="{{ route('pesanan.store') }} " novalidate>
+                @csrf
+                <div class="form-row">
+                    <div class="col-md-3 mb-3 input-group-sm">
+                        <label for="kodeproduk">Kode Produk</label>
+                        <input type="text" class="form-control" id="kodeproduk" placeholder="" name="kode_produk" required="">
                     </div>
-                    <div class="input-group-sm">
-                        <label>Bahan</label>
-                        <input type="text" name="bahan" class="form-control" placeholder="" required="">
+                    <div class="col-md-3 mb-3 input-group-sm">
+                        <label for="Produk">Produk</label>
+                        <br>
+                        <select name="produk" class="form-control" required="">
+                            <option value="" selected="selected">---PILIH---</option>
+                            <option value="Kaos Lengan Pendek" required="">Kaos Lengan Pendek</option>
+                            <option value="Kaos Lengan Panjang" required="">Kaos Lengan Panjang</option>
+                        </select>
                     </div>
-                    <div class="input-group-sm">
-                        <label>Ketersediaan</label>
-                        <input type="text" name="stok" class="form-control" placeholder="" required="">
+                    <div class="col-md-3 mb-3 input-group-sm">
+                        <label for="ukuran">Ukuran</label>
+                        <select name="ukuran" class="form-control">
+                            <option value="" selected="selected">---PILIH---</option>
+                            <option value="M" required="">M</option>
+                            <option value="L" required="">L</option>
+                            <option value="XL" required="">XL</option>
+                            <option value="XXL" required="">XXL</option>
+                        </select>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            </br>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan Data</button>
-                        </div>
+                    <div class="col-md-3 mb-3 input-group-sm">
+                        <label for="jumlah">Qty</label>
+                        <input type="text" class="form-control" id="jumlah" placeholder="" name="jml_kaos" required>
                     </div>
-                </form>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3 input-group-sm">
+                        </br>
+                        <label for="alamat">Alamat</label>
+                        <textarea type="text" class="form-control" id="alamat" placeholder="" name="#" required=""></textarea>
+                    </div>
+                    <div class="col-md-4 mb-3 input-group-sm">
+                        </br>
+                        <label for="nohp">No Hp</label>
+                        <input type="text" class="form-control" id="nohp" placeholder="" name="nohp" required="">
+                    </div>
+                    <div class="col-md-4 mb-3 input-group-sm">
+                        </br>
+                        <label for="tanggal">Tanggal Order</label>
+                        <input type="text" class="form-control" id="date" name="#" placeholder="" required="">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4 mb-3">
+                        </br>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan Data</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong>Daftar Pesanan</strong>
             </div>
-            <div class="col-sm-12">
-                <p class="back-link">ERP Produksi Kaos Polos 2022</p>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Produk</th>
+                            <th>Ukuran</th>
+                            <th>Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td>1</td>
+                        <td>Kaos lengan panjang</td>
+                        <td>L</td>
+                        <td>10</td>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <a class="btn btn-primary" href="#"><i class="fa fa-check-square"></i> Proses</a>
+                    <a class="btn btn-default" href="#"><i class="fa fa-print"></i> Cetak</a>
+                </div>
             </div>
         </div>
-    </div>
-    < <script src="{{ asset('style/js/jquery-1.11.1.min.js') }}">
+        <div class="form-row">
+            <fieldset disabled>
+                <div class="col-md-4 mb-3 input-group-sm">
+                    <label>Estimasi Pengerjaan</label>
+                    <input type="text" class="form-control" placeholder="">
+                </div>
+                <div class="col-md-4 mb-3 input-group-sm">
+                    <label>Total Harga</label>
+                    <input type="text" class="form-control">
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-sm-12">
+            <br>
+            <p class="back-link">ERP Produksi Kaos Polos 2022</p>
+        </div>
+
+        <script src="{{ asset('style/js/jquery-1.11.1.min.js') }}">
         </script>
         <script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('style/js/chart.min.js') }}"></script>
