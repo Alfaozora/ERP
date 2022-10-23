@@ -180,14 +180,6 @@
 </div>
 <!--/.main-->
 
-<script src="{{ asset('style/js/jquery-1.11.1.min.js') }}"></script>
-<script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('style/js/chart.min.js') }}"></script>
-<script src="{{ asset('style/js/chart-data.js') }}"></script>
-<script src="{{ asset('style/js/easypiechart.js') }}"></script>
-<script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
-<script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
-<script src="{{ asset('style/js/custom.js') }}"></script>
 <script>
     window.onload = function() {
         var chart1 = document.getElementById("line-chart").getContext("2d");

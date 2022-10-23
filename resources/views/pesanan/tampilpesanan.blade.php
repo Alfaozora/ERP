@@ -88,21 +88,4 @@
         </div>
     </div>
 </div>
-< <script src="{{ asset('style/js/jquery-1.11.1.min.js') }}">
-    </script>
-    <script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('style/js/chart.min.js') }}"></script>
-    <script src="{{ asset('style/js/chart-data.js') }}"></script>
-    <script src="{{ asset('style/js/easypiechart.js') }}"></script>
-    <script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
-    <script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('style/js/custom.js') }}"></script>
-    <script>
-        function inputAngka(evt) {
-            var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57))
-                return false;
-            return true;
-        }
-    </script>
-    @endsection
+@endsection
