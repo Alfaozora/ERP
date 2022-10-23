@@ -18,7 +18,7 @@ class Bahan_BakuController extends Controller
     public function index()
     {
         $bahans = bahan_baku::latest()->paginate(5);
-        return view('bahan.tampilbahan', compact('bahans'));
+        return view('admins.bahan.tampilbahan', compact('bahans'));
     }
 
     /**
@@ -28,7 +28,7 @@ class Bahan_BakuController extends Controller
      */
     public function create()
     {
-        return view('bahan.tambahbahan');
+        return view('admins.bahan.tambahbahan');
     }
 
     /**
@@ -58,7 +58,7 @@ class Bahan_BakuController extends Controller
     public function edit($id)
     {
         $bahans = bahan_baku::find($id);
-        return view('bahan.editbahan', compact('bahans'));
+        return view('admins.bahan.editbahan', compact('bahans'));
     }
 
     /**

@@ -16,7 +16,7 @@ class PesananController extends Controller
     public function index()
     {
         $pesanans = pesanan::latest()->paginate(5);
-        return view('pesanan.tampilpesanan', compact('pesanans'));
+        return view('admins.pesanan.tampilpesanan', compact('pesanans'));
     }
 
     /**
@@ -26,7 +26,7 @@ class PesananController extends Controller
      */
     public function create()
     {
-        return view('pesanan.tambahpesanan');
+        return view('admins.pesanan.tambahpesanan');
     }
 
     /**
@@ -56,7 +56,7 @@ class PesananController extends Controller
     public function edit($id)
     {
         $pesanans = pesanan::find($id);
-        return view('pesanan.editpesanan', compact('pesanans'));
+        return view('admins.pesanan.editpesanan', compact('pesanans'));
     }
 
     /**

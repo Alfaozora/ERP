@@ -19,7 +19,8 @@ class RegisterController extends Controller
         $user = User::create([
             'email' => $request->email,
             'name' => $request->name,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'role' => 1,
         ]);
 
         Session::flash('message', 'Register Berhasil. Akun anda sudah aktif silahkan Login menggunakan Username dan Password');
