@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\bahan_baku;
 use Illuminate\Http\Request;
 use Alert;
+use PDF;
+
 
 class Bahan_BakuController extends Controller
 {
@@ -16,7 +18,7 @@ class Bahan_BakuController extends Controller
     public function index()
     {
         $bahans = bahan_baku::latest()->paginate(5);
-        return view('tampilbahan', compact('bahans'));
+        return view('bahan.tampilbahan', compact('bahans'));
     }
 
     /**
@@ -26,7 +28,7 @@ class Bahan_BakuController extends Controller
      */
     public function create()
     {
-        return view('tambahbahan');
+        return view('bahan.tambahbahan');
     }
 
     /**
@@ -56,7 +58,7 @@ class Bahan_BakuController extends Controller
     public function edit($id)
     {
         $bahans = bahan_baku::find($id);
-        return view('editbahan', compact('bahans'));
+        return view('bahan.editbahan', compact('bahans'));
     }
 
     /**
@@ -96,5 +98,17 @@ class Bahan_BakuController extends Controller
             Alert::error('Data Gagal Dihapus', 'Maaf');
             return redirect()->route('bahan.index');
         }
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cetak()
+    {
+        $bahans = bahan_baku::all();
+        $pdf = PDF::loadview('cetak_bahan', ['bahan_baku' => $bahans]);
+        return $pdf->download('laporan-bahanBaku-pdf');
     }
 }

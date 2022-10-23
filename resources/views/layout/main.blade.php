@@ -19,7 +19,8 @@
 </head>
 
 <body>
-    @include('sweetalert::alert')
+    @yield('container')
+    <!--navabar-->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -88,8 +89,9 @@
                     </li>
                 </ul>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </nav>
+    <!--/.sidebar-->
     <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         <div class="profile-sidebar">
             <div class="profile-userpic">
@@ -105,10 +107,9 @@
         </div>
         <div class="divider"></div>
         <ul class="nav menu">
-            <li class="parent"><a href="{{ route('home') }}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-            <li class="active"><a href="{{ route('bahan.index') }}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog
-                    Bahan Baku</a></li>
-            <li><a href="{{ route('pesanan.index') }}"><em class="fa fa-shopping-cart">&nbsp;</em> Pemesanan</a></li>
+            <li class="{{ request()->is('home') ? 'active' : '' }}"><a href="{{ route('home') }}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+            <li class="{{ request()->is('bahan*') ? 'active' : '' }}"><a href="{{ route('bahan.index') }}"><em class="fa fa-bar-chart">&nbsp;</em> Katalog Bahan Baku</a></li>
+            <li class="{{ request()->is('pesanan*') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}"><em class="fa fa-shopping-cart">&nbsp;</em> Pemesanan</a></li>
             <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
                     <em class="fa fa-navicon">&nbsp;</em> Produksi <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
@@ -127,76 +128,23 @@
             <li><a href="{{ route('actionlogout') }}"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
         </ul>
     </div>
-    <!--/.sidebar-->
-
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <div class="row">
-            <ol class="breadcrumb">
-                <li><a href="{{ route('home') }}">
-                        <em class="fa fa-home"></em>
-                    </a></li>
-                <li class="breadcrumb-item"><a href="{{ route('bahan.index') }}"> Katalog Bahan Baku</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> Tambah Bahan Baku</li>
-            </ol>
-        </div>
-        <!--/.row-->
-
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Data Bahan Baku Kaos</h2>
-            </div>
-        </div>
-    </div>
-    <!--/.main-->
-
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <div class="row">
-            <div class="col-sm-6">
-                <form method="post" action="{{ route('bahan.store') }} ">
-                    @csrf
-                    <div class="input-group-sm">
-                        <label>Kode Bahan</label>
-                        <input type="text" name="kode" class="form-control" placeholder="" required="">
-                    </div>
-                    <div class="input-group-sm">
-                        <label>Bahan</label>
-                        <input type="text" name="bahan" class="form-control" placeholder="" required="">
-                    </div>
-                    <div class="input-group-sm">
-                        <label>Ketersediaan</label>
-                        <input type="text" name="stok" class="form-control" placeholder="" required="">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            </br>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan Data</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-sm-12">
-                <p class="back-link">ERP Produksi Kaos Polos 2022</p>
-            </div>
-        </div>
-    </div>
-    < <script src="{{ asset('style/js/jquery-1.11.1.min.js') }}">
-        </script>
-        <script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('style/js/chart.min.js') }}"></script>
-        <script src="{{ asset('style/js/chart-data.js') }}"></script>
-        <script src="{{ asset('style/js/easypiechart.js') }}"></script>
-        <script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
-        <script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
-        <script src="{{ asset('style/js/custom.js') }}"></script>
-        <script>
-            function inputAngka(evt) {
-                var charCode = (evt.which) ? evt.which : event.keyCode
-                if (charCode > 31 && (charCode < 48 || charCode > 57))
-                    return false;
-                return true;
-            }
-        </script>
-
+    <script src="{{ asset('style/js/jquery-1.11.1.min.js') }}">
+    </script>
+    <script src="{{ asset('style/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('style/js/chart.min.js') }}"></script>
+    <script src="{{ asset('style/js/chart-data.js') }}"></script>
+    <script src="{{ asset('style/js/easypiechart.js') }}"></script>
+    <script src="{{ asset('style/js/easypiechart-data.js') }}"></script>
+    <script src="{{ asset('style/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('style/js/custom.js') }}"></script>
+    <script>
+        function inputAngka(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
 </body>
 
 </html>
