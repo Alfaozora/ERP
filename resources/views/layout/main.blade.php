@@ -9,6 +9,8 @@
     <link href="{{ asset('style/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('style/css/datepicker3.css') }}" rel="stylesheet">
     <link href="{{ asset('style/css/styles.css') }}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js">
+    </script>
 
     <!--Custom Font-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -144,6 +146,14 @@
                 return false;
             return true;
         }
+    </script>
+    <script>
+        $(function() {
+            $('.dates #usr1').datepicker({
+                'format': 'yyyy-mm-dd',
+                'autoclose': true
+            });
+        });
     </script>
 </body>
 

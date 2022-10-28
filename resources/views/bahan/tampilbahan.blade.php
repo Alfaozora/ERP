@@ -26,9 +26,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <form class="form-inline">
-                        <div class="form-group">
-                            <input class="form-control" type="text" placeholder="Pencarian. . ." name="#" value="">
-                        </div>
+                        <fieldset disabled>
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Pencarian. . ." name="#" value="">
+                            </div>
+                        </fieldset>
                         <div class="form-group">
                             <a type="button" class="btn btn-danger" href="{{route('bahan.create')}}"><i class="fa fa-plus"></i> Tambah</a>
                         </div>

@@ -29,8 +29,8 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
 
-#CRUD Bahan baku
+#Bahan baku
 Route::resource('bahan', Bahan_BakuController::class);
 
-#CRUD Pesanan
+#Pesanan
 Route::resource('pesanan', PesananController::class);
