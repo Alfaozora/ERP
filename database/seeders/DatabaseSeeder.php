@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             bahan_bakuSeeder::class,
             userSeeder::class,
             pesananSeeder::class,
+            ProductSeeder::class,
         ]);
     }
 }

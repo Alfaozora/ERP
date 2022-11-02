@@ -48,7 +48,6 @@
                                     <th>Kode Bahan</th>
                                     <th>Bahan</th>
                                     <th>Ketersediaan</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,21 +57,6 @@
                                         <td>{{ $bahan->kode }} </td>
                                         <td>{{ $bahan->bahan }} </td>
                                         <td>{{ $bahan->stok }} </td>
-                                        <td>
-                                            <div class="action">
-                                                <a type="button" class=" action btn btn-warning"
-                                                    href="{{ route('bahan.edit', $bahan->id) }}"><i
-                                                        class="fa fa-edit"></i></a>
-                                                <form action="{{ route('bahan.destroy', $bahan->id) }}" method="POST"
-                                                    class="d-inline">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class=" action btn btn-danger"
-                                                        onclick="return confirm('Yakin ingin menghapus data?')">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
                                     </tr>
                                 @empty
                                     <tr>

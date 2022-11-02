@@ -39,7 +39,11 @@ class Bahan_BakuController extends Controller
      */
     public function store(Request $request)
     {
-        $masuk = bahan_baku::create($request->all());
+        $masuk = bahan_baku::create([
+            'kode' => $request->kode,
+            'bahan' => $request->bahan,
+            'stok' => 0,
+        ]);
         if ($masuk) {
             Alert::success('Data Berhasil Ditambahkan', 'Selamat');
             return redirect()->route('bahan.index');
