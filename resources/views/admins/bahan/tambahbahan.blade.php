@@ -34,10 +34,6 @@
                             <label>Bahan</label>
                             <input type="text" name="bahan" class="form-control" placeholder="" required="">
                         </div>
-                        <div class="input-group-sm col-md-4">
-                            <label>Ketersediaan</label>
-                            <input type="text" name="stok" class="form-control" placeholder="" required="">
-                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-4 mb-3">
                                 </br>
