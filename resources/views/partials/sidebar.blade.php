@@ -17,22 +17,33 @@
         <li class="{{ request()->is('home') ? 'active' : '' }}"><a href="{{ route('home') }}"><em
                     class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
         <li class="{{ request()->is('admins.bahan*') ? 'active' : '' }}"><a href="{{ route('bahan.index') }}"><em
-                    class="fa fa-bar-chart">&nbsp;</em> Katalog Bahan Baku</a></li>
+                    class="fa fa-bar-chart">&nbsp;</em> Product</a></li>
+        <li class="{{ request()->is('admins.bahan*') ? 'active' : '' }}"><a href="{{ route('bahan.index') }}"><em
+                    class="fa fa-bar-chart">&nbsp;</em> Bahan Baku</a></li>
         <li class="{{ request()->is('admins.pesanan*') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}"><em
                     class="fa fa-shopping-cart">&nbsp;</em> Pemesanan</a></li>
+        <li class="{{ request()->is('admins.pesanan*') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}"><em
+                    class="fa fa-user">&nbsp;</em> Data Costumer</a></li>
+        <li class="{{ request()->is('admins.pesanan*') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}"><em
+                    class="fa fa-user-plus ">&nbsp;</em> Data Vendor</a></li>
+        <li class="{{ request()->is('admins.pesanan*') ? 'active' : '' }}"><a href="{{ route('pesanan.index') }}"><em
+                    class="fa fa-user-plus ">&nbsp;</em> List Produk</a></li>
         <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
-                <em class="fa fa-navicon">&nbsp;</em> Produksi <span data-toggle="collapse" href="#sub-item-1"
+                <em class="fa fa-navicon">&nbsp;</em> MO <span data-toggle="collapse" href="#sub-item-1"
                     class="icon pull-right"><em class="fa fa-plus"></em></span>
             </a>
             <ul class="children collapse" id="sub-item-1">
                 <li><a class="" href="#">
-                        <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
+                        <span class="fa fa-arrow-right">&nbsp;</span> MaT
                     </a></li>
                 <li><a class="" href="#">
-                        <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
+                        <span class="fa fa-arrow-right">&nbsp;</span> CA
                     </a></li>
                 <li><a class="" href="#">
-                        <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
+                        <span class="fa fa-arrow-right">&nbsp;</span> Produce
+                    </a></li>
+                <li><a class="" href="#">
+                        <span class="fa fa-arrow-right">&nbsp;</span> MaD
                     </a></li>
             </ul>
         </li>
