@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Models\pesanan;
 use Alert;
 
@@ -96,5 +97,18 @@ class PesananController extends Controller
             Alert::error('Pesanan Gagal Dihapus', 'Maaf');
             return redirect()->route('pesanan.index');
         }
+=======
+
+class PesananController extends Controller
+{
+    public function tampilpesanan()
+    {
+        return view('tampilpesanan');
+    }
+
+    public function tambahpesanan()
+    {
+        return view('tambahpesanan');
+>>>>>>> origin
     }
 }

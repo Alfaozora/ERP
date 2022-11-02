@@ -4,10 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\HomeController;
+<<<<<<< HEAD
 use App\Http\Controllers\Bahan_BakuController;
 use App\Http\Controllers\PesananController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\BoMController;
+=======
+use App\Http\Controllers\BahanController;
+use App\Http\Controllers\PesananController;
+
+>>>>>>> origin
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,16 +35,18 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
 
+<<<<<<< HEAD
 #Bahan baku
 Route::resource('bahan', Bahan_BakuController::class);
 
 #Pesanan
 Route::resource('pesanan', PesananController::class);
+=======
+#CRUD Bahan baku
+Route::get('bahan/tampil', [BahanController::class, 'tampilbahan'])->name('tampilbahan')->middleware('auth');
+Route::get('bahan/tambah', [BahanController::class, 'tambahbahan'])->name('tambahbahan')->middleware('auth');
 
-#Product
-Route::resource('product', ProductController::class);
-
-#BoM
-Route::resource('bom', BomController::class);
-Route::post('/bom/fetch', [BomController::class,'fetch'])->name('bom.fetch'); //Ajax Fetch Data nama produk from products
-Route::post('/bom/fetch1', [BomController::class,'fetch1'])->name('bom.fetch1'); //Ajax Fetch Data ukuran from products
+#CRUD Pemesanan
+Route::get('pesanan/tampil', [PesananController::class, 'tampilpesanan'])->name('tampilpesanan')->middleware('auth');
+Route::get('pesanan/tambah', [PesananController::class, 'tambahpesanan'])->name('tambahpesanan')->middleware('auth');
+>>>>>>> origin
