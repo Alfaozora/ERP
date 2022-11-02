@@ -40,19 +40,6 @@ h4 {
     font-weight: 300;
 }
 
-.card-header {
-    padding: 1.5rem 1.5rem;
-    background-color: #fff;
-    margin-right: 1rem;
-    margin-left: 1rem;
-    font-weight: bold;
-    text-align: center;
-}
-
-.card-header:first-child {
-    border-radius: 0.5rem 0.5rem 0 0;
-}
-
 .large {
     font-size: 2em;
     margin-bottom: 1rem;
@@ -1058,12 +1045,14 @@ a.label:focus {
 }
 
 .nav-tabs {
-    background: #f2f3f2;
-    border: 0;
+    border-bottom: 1px solid #ddd;
+    float: left;
+    border: 1px;
 }
 
 .nav-tabs li a:hover {
     background: #fff;
+
 }
 
 .nav-tabs li a,
@@ -1524,23 +1513,26 @@ p.back-link {
 .table-responsive {
     text-align: center;
 }
-
-.panel-default {
+.panel-default{
     border-color: #dddd;
 }
-
-.panel {
+.panel{
     border-radius: 4px;
 }
-
-.form-inline .form-control {
+.form-inline .form-control{
     margin-bottom: 0;
     display: inline-block;
     vertical-align: middle;
     height: 35px;
+
 }
 
-.action {
+.action{
     display: inline-flex;
     margin-left: 5px;
 }
+
+.tb{
+    border-top: 0px solid;
+}
+

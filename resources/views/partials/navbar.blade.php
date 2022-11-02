@@ -15,7 +15,7 @@
                     <ul class="dropdown-menu dropdown-messages">
                         <li>
                             <div class="dropdown-messages-box"><a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="">
+                                    <img alt="image" class="img-circle" src="http://placehold.it/40/30a5ff/fff">
                                 </a>
                                 <div class="message-body"><small class="pull-right">3 mins ago</small>
                                     <a href="#"><strong>John Doe</strong> commented on <strong>your
@@ -27,7 +27,7 @@
                         <li class="divider"></li>
                         <li>
                             <div class="dropdown-messages-box"><a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="">
+                                    <img alt="image" class="img-circle" src="http://placehold.it/40/30a5ff/fff">
                                 </a>
                                 <div class="message-body"><small class="pull-right">1 hour ago</small>
                                     <a href="#">New message from <strong>Jane Doe</strong>.</a>
